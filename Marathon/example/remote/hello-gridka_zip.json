@@ -1,0 +1,10 @@
+{
+  "id": "hello-gridka-zip", 
+  "cmd": "hello-gridka/hello-gridka.sh",
+  "cpus": 0.1,
+  "mem": 10.0,
+  "instances": 1,
+  "uris": [
+        "http://$Private-Master-IP/hello-gridka.zip"
+    ]
+}

@@ -1,0 +1,88 @@
+{
+  "id": "/web",
+  "groups": [
+    {
+      "id": "/web/rm",
+      "apps": [
+         { 
+          "id": "/web/rm/master", 
+          "cpus": 0.5,
+          "mem": 1024.0,
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "redis:3",
+              "network": "BRIDGE",
+              "portMappings": [
+                { "containerPort": 6379}
+              ]
+            }
+          },
+          "instances": 1
+       }]
+    },{
+      "id": "/web/rs",
+      "dependencies": ["/web/rm"],
+      "apps": [
+         { 
+          "id": "/web/rs/slave", 
+          "cpus": 0.5,
+          "mem": 1024.0,
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "johscheuer/mesos-redis-slave:v1.0",
+              "network": "BRIDGE",
+              "portMappings": [
+                { "containerPort": 6379}
+              ]
+            }
+          },
+          "instances": 2,
+          "env": {
+            "MESOSDNS": "$Mesos-DNS",
+            "SERVICE": "master-rm-web"
+          }
+          }]
+        },{
+      "id": "/web/mw",
+      "dependencies": ["/web/rm", "/web/rs"],
+      "apps": [
+         {
+          "id": "/web/mw/todo-app-go",
+          "cpus": 0.5,
+          "mem": 256.0,
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "johscheuer/todo-app-go:v1.0",
+              "network": "BRIDGE",
+              "portMappings": [
+                { "containerPort": 8080, "servicePort": 1111}
+              ]
+            }
+          },
+          "instances": 3,
+           "args": [
+              "-slaveService", "slave-rs-web",
+              "-masterService", "master-rm-web"
+            ],
+            "healthChecks": [
+                {
+                    "protocol": "HTTP",
+                    "path": "/health",
+                    "gracePeriodSeconds": 3,
+                    "intervalSeconds": 20,
+                    "portIndex": 0,
+                    "timeoutSeconds": 10,
+                    "maxConsecutiveFailures": 3
+                }
+            ],
+            "upgradeStrategy": {
+              "minimumHealthCapacity": 0.5,
+              "maximumOverCapacity": 0.2
+            }
+        }]
+        }
+  ]
+}

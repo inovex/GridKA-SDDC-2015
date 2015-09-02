@@ -1,0 +1,10 @@
+{
+  "id": "hello-mesos-executor", 
+  "cmd": "python ./mesos_executor.py",
+  "cpus": 0.5,
+  "mem": 256.0,
+  "instances": 1,
+  "uris": [
+        "http://kit-mesos-master:9000/mesos_executor.py"
+    ]
+}

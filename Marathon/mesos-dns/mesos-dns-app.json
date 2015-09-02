@@ -1,0 +1,8 @@
+{
+	"cmd": "/usr/local/mesos-dns/mesos-dns -config=/usr/local/mesos-dns/mesos-dns-config.json -v=10",
+	"cpus": 1.0, 
+	"mem": 1024,
+	"id": "mesos-dns",
+	"instances": 1,
+	"constraints": [["hostname", "CLUSTER", "$SLAVE-Pub-IP"]]
+}
