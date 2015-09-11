@@ -1,0 +1,10 @@
+{
+  "id": "hello-gridka-repacked", 
+  "cmd": "chmod u+x ./hello-gridka.sh && ./hello-gridka.sh",
+  "cpus": 0.1,
+  "mem": 10.0,
+  "instances": 1,
+  "uris": [
+        "http://kit-mesos-master:9000/app.tar.gz"
+    ]
+}

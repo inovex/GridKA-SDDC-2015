@@ -1,0 +1,20 @@
+{
+  "id": "read-from-disk",
+  "cmd": "while [ true ] ; do  cat /tmp/date.txt; sleep 5 ; done",
+  "cpus": 0.5,
+  "mem": 64.0,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "busybox"
+    },
+    "volumes": [
+      {
+        "containerPath": "/tmp",
+        "hostPath": "/tmp",
+        "mode": "RO"
+      }
+    ]
+  },
+  "constraints": [["hostname", "CLUSTER", "$Slave-Pub-IP"]]
+}

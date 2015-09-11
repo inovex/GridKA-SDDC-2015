@@ -1,0 +1,23 @@
+{
+  "id": "write-to-disk",
+  "cmd": "while [ true ] ; do echo $(date) > /tmp/date.txt; sleep 5 ; done",
+  "cpus": 0.5,
+  "mem": 64.0,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "busybox"
+    },
+    "volumes": [
+      {
+        "containerPath": "/tmp",
+        "hostPath": "/tmp",
+        "mode": "RW"
+      }
+    ]
+  },
+  "constraints": [
+	  ["hostname", "CLUSTER", "$Slave-Pub-IP"],
+  	  ["hostname", "UNIQUE"]
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "docker-hello",
+  "cmd": "echo Johannes && sleep 500",
+  "cpus": 0.5,
+  "mem": 32.0,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "busybox"
+    }
+  },
+  "instances": 3
+}

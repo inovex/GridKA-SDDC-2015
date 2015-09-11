@@ -1,0 +1,16 @@
+{
+  "id": "arg-example",
+  "cpus": 0.2,
+  "mem": 32.0,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "johscheuer/arg-example:v1.0"
+    }
+  },
+  "instances": 1,
+   "args": [
+      "-name", "Bert",
+      "-street", "Sesame Street"
+    ]
+}

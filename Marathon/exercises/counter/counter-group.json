@@ -1,0 +1,43 @@
+{
+  "id": "/counters",
+  "groups": [
+    {
+      "id": "/counters/forward",
+      "apps": [
+         {  
+            "id": "/counters/forward/fc", 
+            "cmd": "for i in {1..100}; do echo $i; sleep 1; done",
+            "cpus": 0.1,
+            "mem": 10.0,
+            "instances": 1
+          },
+          {  
+            "id": "/counters/forward/hellofc", 
+            "cmd": "for i in {1..100}; do echo 'Hello GrikdKA'; sleep 1; done",
+            "cpus": 0.1,
+            "mem": 10.0,
+            "instances": 1
+          }
+       ]
+    },{
+      "id": "/counters/backward",
+      "dependencies": ["/counters/forward"],
+      "apps": [
+         {
+            "id": "/counters/backward/bc", 
+            "cmd": "for i in {100..1}; do echo $i; sleep 1; done",
+            "cpus": 0.1,
+            "mem": 10.0,
+            "instances": 1
+         },
+         {  
+            "id": "/counters/backward/hellobc", 
+            "cmd": "for i in {1..100}; do echo 'Hello GrikdKA' | rev; sleep 1; done",
+            "cpus": 0.1,
+            "mem": 10.0,
+            "instances": 1
+         }
+      ]
+    }
+  ]
+}

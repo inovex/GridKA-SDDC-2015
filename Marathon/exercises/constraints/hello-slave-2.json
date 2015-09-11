@@ -1,0 +1,8 @@
+{
+  "id": "hello-slave-2", 
+  "cmd": "while [ true ] ; do echo 'Hello' ; sleep 5 ; done",
+  "cpus": 0.1,
+  "mem": 10.0,
+  "instances": 1,
+  "constraints": [["hostname", "CLUSTER", "$Slave-pub-IP"]]
+}

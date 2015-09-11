@@ -1,0 +1,19 @@
+{
+  "id": "/counters",
+  "groups": [
+    {
+      "id": "/counters/forward",
+      "apps": [
+         {  "id": "/counters/forward/fc", ... },
+         {  "id": "/counters/forward/hellofc", ... }
+       ]
+    },{
+      "id": "/counters/backward",
+      "dependencies": ["/counters/forward"],
+      "apps": [
+         {  "id": "/counters/backward/bc", ... },
+         {  "id": "/counters/backward/hellobc", ... }
+      ]
+    }
+  ]
+}

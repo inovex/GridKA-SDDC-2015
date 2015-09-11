@@ -1,0 +1,16 @@
+{
+  "id": "hello-server",
+  "cpus": 0.5,
+  "mem": 32.0,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "johscheuer/go-webserver",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "containerPort": 8000, "servicePort": 80 }
+      ]
+    }
+  },
+  "instances": 3
+}

@@ -1,0 +1,7 @@
+{
+  "id": "counter", 
+  "cmd": "for i in {1..25}; do echo $i; sleep 1; done",
+  "cpus": 0.1,
+  "mem": 10.0,
+  "instances": 3
+}
